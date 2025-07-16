@@ -42,7 +42,7 @@
 
   - name: copying catalogue service file
     ansible.builtin.copy:
-      srv: catalogue.service
+      src: catalogue.service
       dest: /etc/systemd/system/catalogue.service
 
   - name: starting catalogue service
@@ -50,3 +50,13 @@
       name: catalogue
       enabled: yes
       daemon_reload: true
+
+  - name: copy mongodb repo
+    ansible.builtin.copy:
+      src: mongodb.repo
+      dest: /etc/yum.repos.d/mongo.repo
+
+  - name: Installing mongodb
+    ansible.builtin.dnf:
+      name: mongodb-org
+      state: present
