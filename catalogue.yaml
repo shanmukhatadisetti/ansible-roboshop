@@ -60,3 +60,7 @@
     ansible.builtin.dnf:
       name: mongodb-org
       state: present
+
+  - name: loading content into mongodb
+    ansible.builtin.shell: mongosh --host MONGODB-SERVER-IPADDRESS </app/db/master-data.js
+    
