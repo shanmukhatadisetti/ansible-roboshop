@@ -14,7 +14,7 @@
       state: present
 
   - name: starting redis service
-    ansible.builtin.systemd_service:
+    ansible.builtin.service:
       name: redis
       state: started
       enabled: true
