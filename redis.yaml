@@ -16,6 +16,7 @@
   - name: starting redis service
     ansible.builtin.systemd_service:
       name: redis
+      state: started
       enabled: yes
 
   - name: changing redis configuration file
@@ -30,7 +31,8 @@
       regexp: 'protected-mode'
       line: 'protected-mode no'  
 
-  - name: starting redis service
+  - name: restarting redis service
     ansible.builtin.systemd_service:
       name: redis
+      state: restarted
       enabled: yes    

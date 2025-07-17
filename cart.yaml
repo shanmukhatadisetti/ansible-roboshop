@@ -48,5 +48,6 @@
   - name: starting cart service
     ansible.builtin.systemd_service:
       name: cart
+      state: started
       enabled: yes
       daemon_reload: true
