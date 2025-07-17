@@ -20,10 +20,10 @@
       enabled: yes
 
   - name: changing redis configuration file
-    ansible.builtin.lineinfile:
+    ansible.builtin.replace:
       path: /etc/redis/redis.conf
       regexp: '127.0.0.1'
-      line: '0.0.0.0'
+      replace: '0.0.0.0'
 
   - name: changing protected-mode to no in redis configuration file
     ansible.builtin.lineinfile:
