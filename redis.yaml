@@ -13,12 +13,6 @@
       name: redis
       state: present
 
-  - name: starting redis service
-    ansible.builtin.service:
-      name: redis
-      state: started
-      enabled: yes
-
   - name: changing redis configuration file
     ansible.builtin.replace:
       path: /etc/redis/redis.conf
@@ -31,3 +25,8 @@
       regexp: 'protected-mode'
       line: 'protected-mode no'  
 
+  - name: starting redis service
+    ansible.builtin.service:
+      name: redis
+      state: started
+      enabled: yes
