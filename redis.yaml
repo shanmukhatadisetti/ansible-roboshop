@@ -16,8 +16,8 @@
   - name: starting redis service
     ansible.builtin.service:
       name: redis
-      state: restarted
-      enabled: true
+      # state: started
+      enabled: yes
 
   - name: changing redis configuration file
     ansible.builtin.lineinfile:
