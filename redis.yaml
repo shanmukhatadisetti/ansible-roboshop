@@ -31,7 +31,3 @@
       regexp: 'protected-mode'
       line: 'protected-mode no'  
 
-  - name: restarting redis service
-    ansible.builtin.service:
-      name: redis
-      state: restarted   
