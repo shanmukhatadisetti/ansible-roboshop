@@ -33,4 +33,4 @@
   - name: starting redis service
     ansible.builtin.systemd_service:
       name: redis
-      ensbled: yes    
+      enabled: yes    
