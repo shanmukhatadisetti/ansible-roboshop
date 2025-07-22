@@ -1,0 +1,51 @@
+- name: configuring shipping component
+  hosts: shipping
+  become: yes
+  tasks:
+  - name: installing maven
+    ansible.builtin.dnf:
+      name: maven
+      state: present
+
+  - name: creating roboshop user
+    ansible.builtin.user:
+      name: roboshop
+      shell: /sbin/nologin
+      system: true
+      home: /app
+
+  - name: creating a directory
+    ansible.builtin.file:
+     path: /app
+     state: directory
+
+  - name: downloading shipping url
+    ansible.builtin.get_url:
+      url: https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip
+      dest: /tmp/shipping.zip
+
+  - name: extracting shipping url
+    ansible.builtin.unarchive:
+      src: /tmp/shipping.zip
+      dest: /app
+      remote_src: yes
+
+  - name: installing maven dependencies
+    ansible.builtin.command: mvn clean package 
+
+  - name: renaming jar file
+    ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar 
+
+  - name: copying shipping.service file
+    ansible.builtin.copy:
+    src: shipping.service
+    dest: /etc/systemd/system/shipping.service
+
+  - name: starting shipping.service file
+    ansible.builtin.service:
+      name: shipping.service
+      enabled: yes
+
+  - name: daemon_reloading
+    ansible.builtin.systemd_service:
+      daemon_reload: true
