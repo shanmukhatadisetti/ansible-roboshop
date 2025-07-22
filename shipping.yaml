@@ -68,7 +68,7 @@
       daemon_reload: true
 
   - name: importing data into 
-    tag:
+    tags:
     - import
     community.mysql.mysql_db:
       name: all
