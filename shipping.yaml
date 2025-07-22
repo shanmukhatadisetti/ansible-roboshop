@@ -38,8 +38,8 @@
 
   - name: copying shipping.service file
     ansible.builtin.copy:
-    src: shipping.service
-    dest: /etc/systemd/system/shipping.service
+      src: shipping.service
+      dest: /etc/systemd/system/shipping.service
 
   - name: starting shipping.service file
     ansible.builtin.service:
