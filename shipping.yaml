@@ -72,9 +72,9 @@
     - /app/db/app-user.sql 
     - /app/db/master-data.sql
 
-  - name: restarting shipping service
-    tag:
-    - import
-    ansible.builtin.service:
-      name: shipping
-      state: restarted
+  # - name: restarting shipping service
+  #   tag:
+  #   - import
+  #   ansible.builtin.service:
+  #     name: shipping
+  #     state: restarted
