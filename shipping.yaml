@@ -10,6 +10,12 @@
     - maven
     - mysql
 
+  - name: installing pip dependencies
+    ansible.builtin.pip:
+      name: "{{ item }}"
+    loop:
+    - PyMySQL
+
   - name: creating roboshop user
     ansible.builtin.user:
       name: roboshop
@@ -72,9 +78,8 @@
     - /app/db/app-user.sql 
     - /app/db/master-data.sql
 
-  # - name: restarting shipping service
-  #   tag:
-  #   - import
-  #   ansible.builtin.service:
-  #     name: shipping
-  #     state: restarted
+  - name: starting shipping.service file
+    ansible.builtin.service:
+      name: shipping.service
+      state: restarted
+    
