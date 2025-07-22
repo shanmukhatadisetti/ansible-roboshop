@@ -10,7 +10,7 @@
   - name: starting and enabling mysql service
     ansible.builtin.service:
       name: mysql
-      enable: yes
+      enabled: yes
 
   - name: creating root_user and root_password to mysql
     ansible.builtin.command: --set-root-pass RoboShop@1
