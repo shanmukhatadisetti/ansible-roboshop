@@ -67,7 +67,9 @@
     ansible.builtin.systemd_service:
       daemon_reload: true
 
-  - name: importing data into mysql
+  - name: importing data into 
+    tag:
+    - import
     community.mysql.mysql_db:
       name: all
       login_user: root
