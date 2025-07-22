@@ -13,8 +13,10 @@
   - name: installing pip dependencies
     ansible.builtin.pip:
       name: "{{ item }}"
+      executable: pip3.9
     loop:
     - PyMySQL
+    - cryptography
 
   - name: creating roboshop user
     ansible.builtin.user:
