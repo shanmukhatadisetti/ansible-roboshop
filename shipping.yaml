@@ -52,8 +52,27 @@
   - name: starting shipping.service file
     ansible.builtin.service:
       name: shipping.service
+      state: started
       enabled: yes
 
   - name: daemon_reloading
     ansible.builtin.systemd_service:
       daemon_reload: true
+
+  - name: importing data into mysql
+    community.mysql.mysql_db:
+      name: all
+      login_user: root
+      login_password: RoboShop@1
+      login_host: mysql.autonagar.in
+      state: import
+      target: "{{ item }}"
+    loop:
+    - /app/db/schema.sql
+    - /app/db/app-user.sql 
+    - /app/db/master-data.sql
+
+  - name: restarting shipping service
+    ansible.builtin.service:
+    name: shipping.service
+    state: restarted
