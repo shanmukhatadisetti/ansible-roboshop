@@ -7,9 +7,9 @@
       name: mysql-server
       state: present
 
-  - name: starting and enabling mysql service
+  - name: starting and enabling mysqld service
     ansible.builtin.service:
-      name: mysql
+      name: mysqld
       enabled: yes
 
   - name: creating root_user and root_password to mysql
